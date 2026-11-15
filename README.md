@@ -63,43 +63,43 @@ By orchestrating **Whisper**, **Sarvam AI**, **Mistral AI**, and **ChromaDB** us
 ```mermaid
 flowchart TD
     subgraph INGESTION["1. Media Ingestion & Audio Prep"]
-        A[YouTube URL / Local Media] --> B{Source Type?}
-        B -->|YouTube| C[yt-dlp Audio Downloader]
-        B -->|Local File| D[Pydub File Converter]
-        C --> E[Mono 16kHz WAV Audio]
+        A["YouTube URL / Local Media"] --> B{"Source Type?"}
+        B -->|YouTube| C["yt-dlp Audio Downloader"]
+        B -->|Local File| D["Pydub File Converter"]
+        C --> E["Mono 16kHz WAV Audio"]
         D --> E
-        E --> F[Audio Chunking: 10-minute segments]
+        E --> F["Audio Chunking: 10-minute segments"]
     end
 
     subgraph TRANSCRIPTION["2. Speech-to-Text Layer"]
-        F --> G{Language Selected}
-        G -->|English| H[OpenAI Whisper Engine]
-        G -->|Hinglish| I[Sarvam AI API (Saaras v2.5)]
-        H --> J[Consolidated Transcript]
+        F --> G{"Language Selected"}
+        G -->|English| H["OpenAI Whisper Engine"]
+        G -->|Hinglish| I["Sarvam AI API (Saaras v2.5)"]
+        H --> J["Consolidated Transcript"]
         I --> J
     end
 
     subgraph INTELLIGENCE["3. LLM Processing (Mistral AI via LCEL)"]
-        J --> K[Title Generator]
-        J --> L[Map-Reduce Summarizer]
-        J --> M[Insight Extractor]
-        M --> M1[Action Items]
-        M --> M2[Key Decisions]
-        M --> M3[Open Questions]
+        J --> K["Title Generator"]
+        J --> L["Map-Reduce Summarizer"]
+        J --> M["Insight Extractor"]
+        M --> M1["Action Items"]
+        M --> M2["Key Decisions"]
+        M --> M3["Open Questions"]
     end
 
     subgraph RAG_PIPELINE["4. Vector Store & RAG Chat"]
-        J --> N[Recursive Text Splitter (500 chars / 50 overlap)]
-        N --> O[HuggingFace Embeddings (all-MiniLM-L6-v2)]
-        O --> P[(ChromaDB Vector Store)]
-        Q[User Query] --> R[Similarity Retriever (k=4)]
+        J --> N["Recursive Text Splitter (500 chars / 50 overlap)"]
+        N --> O["HuggingFace Embeddings (all-MiniLM-L6-v2)"]
+        O --> P[("ChromaDB Vector Store")]
+        Q["User Query"] --> R["Similarity Retriever (k=4)"]
         P --> R
-        R --> S[Context-Grounded Mistral Prompt]
-        S --> T[Ground-Truth Answer]
+        R --> S["Context-Grounded Mistral Prompt"]
+        S --> T["Ground-Truth Answer"]
     end
 
     subgraph INTERFACE["5. User Presentation"]
-        K & L & M1 & M2 & M3 & T --> U[Streamlit Web App / CLI]
+        K & L & M1 & M2 & M3 & T --> U["Streamlit Web App / CLI"]
     end
 ```
 
