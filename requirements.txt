@@ -1,0 +1,48 @@
+# ==========================================
+# AI MEETING ASSISTANT - REQUIREMENTS
+# ==========================================
+
+# UI
+streamlit
+
+# Environment variables
+python-dotenv
+
+# YouTube audio downloading
+yt-dlp
+
+# Audio processing
+openai-whisper
+faster-whisper
+ffmpeg-python
+pydub
+
+# LangChain and LCEL
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+# Mistral LLM integration
+langchain-mistralai
+
+# RAG and Vector Database
+langchain-chroma
+chromadb
+
+# Hugging Face Embeddings
+langchain-huggingface
+sentence-transformers
+
+# Document loading and PDF processing
+pypdf
+pymupdf
+
+# Text processing and utilities
+tiktoken
+numpy
+pandas
+rich
+
+# PDF generation and export
+reportlab
